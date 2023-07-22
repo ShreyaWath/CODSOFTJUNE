@@ -1,6 +1,5 @@
 import java.util.Scanner;
 
-// Bank Account class
 class BankAccount 
 {
     private double balance;
@@ -29,7 +28,6 @@ class BankAccount
     }
 }
 
-// ATM class
 class ATM 
 {
     private BankAccount bankAccount;
@@ -80,8 +78,6 @@ class ATM
     }
 }
 
-
-// Main class
 public class ATMInterface 
 {
     public static void main(String[] args) 
