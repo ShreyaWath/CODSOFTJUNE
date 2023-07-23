@@ -47,13 +47,21 @@ You can further enhance the project by adding features such as:
 10. Adding a graphical user interface (GUI) for a more user-friendly experience.
 
 Explanation of Code :
-1] The program starts with importing necessary classes - HashMap, Map, and Scanner.
-2] The code defines a class called wordCounter. It contains the main method, which serves as the entry point of the program, and several helper methods getTextFromUser, readFile, countWords, and displayWordCount to perform specific tasks.
-3] The main method starts by calling the getTextFromUser method to get the input text from the user, either by manual entry or from a file. If the input is valid, it proceeds to count the words using the countWords method and then displays the word count using the displayWordCount method.
-4] getTextFromUser method prompts the user to choose between manual entry or providing a file path. If the user chooses to enter the text manually, they can type the text, and it is returned as a string. If the user chooses to provide a file path, the method reads the file and returns its content as a string.
-5] readFile method takes a file path as input and reads the content of the file. If the file exists, it reads the content line by line and appends it to a StringBuilder. The file content is returned as a string.
-6] countWords method takes the input text as a string and performs word counting. It first splits the text into words using a regular expression (\\s+|\\p{Punct}), which splits the text by spaces or punctuation. Then, it counts the frequency of each word and stores the results in a HashMap. The word count is case-insensitive by converting all words to lowercase.
-7] displayWordCount method takes the wordCount map as input, which contains the frequency of each word. It iterates over the map and displays each word along with its count. It also calculates and displays the total word count.
+1] The program starts by defining the class named "WordCounter" and the main method, which serves as the entry point for the program.
+2] The main method first calls the getTextFromUser() method to get the text from the user, either manually or by providing a file path.
+3] The getTextFromUser() method displays a prompt for the user to choose between entering text manually or providing a file path. The user's choice is taken as input and processed accordingly:
+a. If the user chooses to enter text manually (T), the program prompts the user to enter the text and returns the provided text as a string.
+b. If the user chooses to provide a file path (F), the program prompts the user to enter the file path. It then tries to read the contents of the file using the readFile() method and returns the file's content as a string. If the file is not found, it informs the user about the error and returns null.
+c. If the user enters an invalid choice, the program informs the user about it and returns null.
+4] The readFile() method takes the file path as input and reads the content of the file using a Scanner. It appends each line of the file to a StringBuilder and returns the entire content as a string.
+5] The countWords() method takes the text as input and counts the occurrences of each word. It first splits the text into an array of words using a regular expression that matches spaces (\\s+) or punctuation marks (\\p{Punct}). Then, it initializes a HashMap named wordCount to store the word frequencies.
+6] The for loop iterates over each word in the array of words and does the following:
+a. It checks if the word is not empty to avoid counting empty strings.
+b. It converts the word to lowercase using word.toLowerCase() to ensure case-insensitivity while counting occurrences.
+c. It uses the put() method of the wordCount map to add the word and its count. If the word is already present in the map, getOrDefault() method is used to retrieve the current count and increment it by 1. If the word is not present, it sets the count to 1.
+7] The displayWordCount() method takes the wordCount map as input and displays the word frequencies along with the total word count. It iterates over the map entries using a for loop, printing each word and its corresponding count. It also keeps track of the total word count by adding up the counts of all words.
+After counting the words and displaying the word frequencies, the program prints the total word count.
+
 
 
 Task 3 : ATM Interface
