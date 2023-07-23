@@ -1,9 +1,12 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class wordCounter 
+public class WordCounter 
 {
+
     public static void main(String[] args) 
     {
         String text = getTextFromUser();
@@ -24,8 +27,7 @@ public class wordCounter
         {
             System.out.println("Enter the text: ");
             return scanner.nextLine();
-        } 
-        else if (choice.equals("F")) 
+        } else if (choice.equals("F")) 
         {
             System.out.println("Enter the file path: ");
             String filePath = scanner.nextLine().trim();
@@ -33,9 +35,9 @@ public class wordCounter
             {
                 return readFile(filePath);
             } 
-            catch (Exception e) 
+            catch (FileNotFoundException e) 
             {
-                System.out.println("Error reading the file.");
+                System.out.println("File not found.");
                 return null;
             }
         } 
@@ -46,29 +48,21 @@ public class wordCounter
         }
     }
 
-    private static String readFile(String filePath) throws Exception 
+    private static String readFile(String filePath) throws FileNotFoundException 
     {
         File file = new File(filePath);
-        if (file.exists()) 
-        {
-            Scanner scanner = new Scanner(file);
-            StringBuilder sb = new StringBuilder();
-            while (scanner.hasNextLine()) 
-            {
-                sb.append(scanner.nextLine()).append("\n");
-            }
-            scanner.close();
-            return sb.toString();
-        } 
-        else 
-        {
-            throw new FileNotFoundException("File not found: " + filePath);
+        StringBuilder content = new StringBuilder();
+        Scanner scanner = new Scanner(file);
+        while (scanner.hasNextLine()) {
+            content.append(scanner.nextLine()).append("\n");
         }
+        scanner.close();
+        return content.toString();
     }
 
     private static Map<String, Integer> countWords(String text) 
     {
-        String[] words = text.split("\\s+|\\p{Punct}"); 
+        String[] words = text.split("\\s+|\\p{Punct}"); // Split by spaces or punctuation
         Map<String, Integer> wordCount = new HashMap<>();
 
         for (String word : words) 
